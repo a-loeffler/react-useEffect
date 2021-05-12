@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import turkey from "../images/turkey.png";
 import feather1 from "../images/feather1.svg";
 import feather2 from "../images/feather2.svg";
@@ -25,7 +25,25 @@ const feathers = [
 ];
 
 function PictureDisplay({ size, featherCount, featherColors }) {
-  useEffect(() => console.log('PictureDisplay size', size), [size]);
+  const [tSize, setTSize] = useState('')
+  useEffect(() => {
+    let cname = '';
+    switch (size) {
+      case 'm':
+        cname = 'medium';
+        break;
+      case 'l':
+        cname = 'large';
+        break;
+      case 'xl':
+        cname = 'xlarge';
+        break;
+      default :
+        cname = 'small'
+        break;
+    }
+    setTSize((prevSize) => prevSize = cname)
+  }, [size]);
   useEffect(() => console.log('PictureDisplay count', featherCount), [featherCount]);
   useEffect(() => console.log('PictureDisplay colors', featherColors), [featherColors]);
 
@@ -37,7 +55,7 @@ function PictureDisplay({ size, featherCount, featherColors }) {
   }
 
   return (
-    <div className={`image-area medium`}>
+    <div className={`image-area ${tSize}`}>
       {colors.map((c, i) =>
         <img src={feathers[i]} className={`image-feather ${c}`} alt="" />
       )}
