@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import turkey from "../images/turkey.png";
 import feather1 from "../images/feather1.svg";
 import feather2 from "../images/feather2.svg";
@@ -11,25 +12,27 @@ import feather9 from "../images/feather9.svg";
 import featherA from "../images/featherA.svg";
 
 const feathers = [
-    feather1,
-    feather2,
-    feather3,
-    feather4,
-    feather5,
-    feather6,
-    feather7,
-    feather8,
-    feather9,
-    featherA,
+  feather1,
+  feather2,
+  feather3,
+  feather4,
+  feather5,
+  feather6,
+  feather7,
+  feather8,
+  feather9,
+  featherA,
 ];
 
-function PictureDisplay ({ size, featherCount, featherColors }) {
-  console.log('PictureDisplay', size, featherCount, featherColors);
+function PictureDisplay({ size, featherCount, featherColors }) {
+  useEffect(() => console.log('PictureDisplay size', size), [size]);
+  useEffect(() => console.log('PictureDisplay count', featherCount), [featherCount]);
+  useEffect(() => console.log('PictureDisplay colors', featherColors), [featherColors]);
 
   // TODO: Wrap in useEffect
   const colors = [];
   if (!featherColors || featherColors.length === 0) featherColors = [''];
-  for (let i=0; i<featherCount; i++) {
+  for (let i = 0; i < featherCount; i++) {
     colors.push(featherColors[i % featherColors.length]);
   }
 
